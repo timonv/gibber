@@ -28,6 +28,7 @@ Or install it yourself as:
 gibber = Gibber.new
 gibber.replace("I have a passion for crooked bananas")
 # => A arcu a fringilla nisi tempus venenatis (maybe)
+# Roughly translates to 'From the bow, poisoned from the ecological, unless time'
 ```
 
 Gibber preserves any non wordy characters to give your text that texty feel.
