@@ -21,7 +21,7 @@ class Gibber
     if translation = translation_at_keys(*possible_keys)
       conditional_capitalize(word, translation)
     else
-      replace(word[0..-2])
+      replace_word(word[0..-2])
     end
   end
 
