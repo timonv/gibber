@@ -74,6 +74,11 @@ class TestGibber < MiniTest::Test
     end
   end
 
+  def test_finite_recursion
+    result = Gibber.new.replace("dskafjlsdknfasljdjfl\nkadsjflkassf23sdvcxcvaefegasdfczcvsafd329857239852jdlkfjasdlfjalksdjflkadjaf")
+    assert(result != nil)
+  end
+
   def test_preserve_non_wordy_characters
     sentence = 'I really like playing "God", but I am not a fan'
     result = Gibber.new.replace(sentence)
