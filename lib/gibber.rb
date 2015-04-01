@@ -14,14 +14,14 @@ class Gibber
   private
 
   # recursive if missing translation
-  def replace_word(word)
+  def replace_word(word, tries_left=100)
     return word if blank?(word) || numeric?(word) || !wordy?(word)
 
     possible_keys = keys_within_margin_for_word(word)
     if translation = translation_at_keys(*possible_keys)
       conditional_capitalize(word, translation)
     else
-      replace_word(word[0..-2])
+      tries_left == 0 ? ['I','V','X'].sample : replace_word(word[0..-2], tries_left - 1)
     end
   end
 

@@ -100,6 +100,6 @@ class TestGibber < MiniTest::Test
 
     gibber = Gibber.new
     result = text.gsub(/[.?!]/, '\0|').split('|').map { |sentence| gibber.replace(sentence) }.join("")
-    puts result
+    # no error
   end
 end
