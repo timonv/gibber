@@ -1,14 +1,20 @@
 require_relative "gibber/version"
+require 'nokogiri'
 
 class Gibber
   MARGIN = 0.3
 
   def replace(text)
-    text
-      .gsub(/\W/, '|\0|')
-      .split('|')
-      .map(&method(:replace_word))
-      .join('')
+    parsed = Nokogiri::HTML.fragment(text)
+    parsed.xpath('.//text()').each do |node|
+      node.content = node.content
+        .gsub(/\W/, '|\0|')
+        .split('|')
+        .map(&method(:replace_word))
+        .join('')
+    end
+
+    parsed.to_html
   end
 
   private
@@ -54,11 +60,12 @@ class Gibber
 
   def conditional_capitalize(original_word, translated_word)
     if original_word[0] == original_word[0].upcase
-      translated_word.capitalize 
+      translated_word.capitalize
     else
       translated_word
     end
   end
+
 
   def word_hash
     @_word_hash ||= begin
