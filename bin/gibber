@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'gibber'
+g = Gibber.new
+puts g.replace STDIN.read
